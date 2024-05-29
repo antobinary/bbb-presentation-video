@@ -1,14 +1,9 @@
-# SPDX-FileCopyrightText: 2002 BigBlueButton Inc. and by respective authors
+# SPDX-FileCopyrightText: 2024 BigBlueButton Inc. and by respective authors
 #
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
 name: Package build
 on:
-  push:
-    branches: [ "main" ]
-    tags: [ "**" ]
-    paths-ignore:
-      - debian/changelog
   pull_request:
     branches: [ "main" ]
     paths-ignore:
@@ -18,10 +13,10 @@ jobs:
   ubuntu:
     strategy:
       matrix:
-        UBUNTU_VERSION: [ "20.04" ]
+        UBUNTU_VERSION: [ "22.04" ]
         include:
-          - UBUNTU_VERSION: "20.04"
-            UBUNTU_CODENAME: focal
+          - UBUNTU_VERSION: "22.04"
+            UBUNTU_CODENAME: jammy
     runs-on: ubuntu-latest
     container: ubuntu:${{ matrix.UBUNTU_VERSION }}
     defaults:
@@ -149,8 +144,8 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: ubuntu-20.04
-          path: ubuntu-20.04
+          name: ubuntu-22.04
+          path: ubuntu-22.04
 
       - uses: actions/download-artifact@v3
         with:
@@ -159,7 +154,7 @@ jobs:
 
       - name: Create release asset archives
         run: |
-          for asset in ubuntu-20.04 amazonlinux-2 ; do
+          for asset in ubuntu-22.04 amazonlinux-2 ; do
             zip --junk-paths --recurse-paths --compression-method store "${asset}.zip" "${asset}"
           done
 
@@ -167,6 +162,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for asset in ubuntu-20.04 amazonlinux-2 ; do
+          for asset in ubuntu-22.04 amazonlinux-2 ; do
             gh release upload ${{ github.ref_name }} "${asset}.zip"
           done
