@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022 Calvin Walton
+# SPDX-FileCopyrightText: 2024 Calvin Walton
 #
 # SPDX-License-Identifier: CC0-1.0
 
@@ -24,7 +24,7 @@ jobs:
         python-version: [ "3.8" ]
         include:
           - python-version: "3.8"
-            ubuntu-codename: "focal"
+            ubuntu-codename: "jammy"
     steps:
 
       - name: Checkout repository

@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022 BigBlueButton Inc. and by respective authors
+# SPDX-FileCopyrightText: 2024 BigBlueButton Inc. and by respective authors
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 from __future__ import annotations
@@ -25,6 +25,7 @@ from bbb_presentation_video.renderer.tldraw.utils import (
     STICKY_TEXT_COLOR,
     STROKES,
     AlignStyle,
+    ColorStyle,
     Style,
 )
 
